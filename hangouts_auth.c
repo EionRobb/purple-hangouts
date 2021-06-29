@@ -258,6 +258,11 @@ hangouts_auth_get_session_cookies_got_cb(PurpleHttpConnection *http_conn, Purple
 		return;
 	}
 	
+	purple_http_cookie_jar_set(ha->cookie_jar, "__Secure-3PSID", NULL);
+	purple_http_cookie_jar_set(ha->cookie_jar, "__Host-3PLSID", NULL);
+	purple_http_cookie_jar_set(ha->cookie_jar, "__Secure-3PAPISID", NULL);
+	purple_http_cookie_jar_set(ha->cookie_jar, "__Host-GAPS", NULL);
+	
 	//Restore the last_event_timestamp before it gets overridden by new events
 	last_event_timestamp = purple_account_get_int(ha->account, "last_event_timestamp_high", 0);
 	if (last_event_timestamp != 0) {
